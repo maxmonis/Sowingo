@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="root">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sowingo Front-end interview test - Max Monis</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fafafa" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.5/angular-material.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <div class="container" ng-controller="prodController">
+      <header class="header">
+        <h1>Sowingo</h1>
+        <nav class="navbar">
+          <input
+            class="search"
+            type="text"
+            ng-model="search"
+            placeholder="{{searchPlaceholder}}"
+          />
+          <div>Favourites</div>
+          <div>Cart</div>
+        </nav>
+      </header>
+      <div class="promos-container">
+        <h3 class="promos-header">Promos</h3>
+        <div class="products-container">
+          <div
+            class="product-card"
+            ng-repeat="prod in products | filter: {name: search}"
+          >
+            <div class="product-img-container">
+              <img
+                class="product-img"
+                src="{{prod.main_image}}"
+                alt="{{prod.name}}"
+              />
+            </div>
+            <div class="product-info-container">
+              <div class="product-description">
+                <p>{{ prod.description }}</p>
+              </div>
+              <div class="price-info-container">
+                <p class="price-label">Your Price</p>
+                <h3>
+                  {{prod.vendor_inventory[0].list_price | currency: USD$}}
+                </h3>
+              </div>
+              <div class="user-inputs">
+                <div class="heart">Heart</div>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.5/angular-material.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
